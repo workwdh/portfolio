@@ -40,7 +40,7 @@
 }
 
 body {
-  font-family: "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap";
+  font-family: 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap';
   margin: 0;
   cursor: default;
 }
@@ -107,7 +107,7 @@ p {
 
 #navbar.navbar--dark {
   background-color: var(--color-blue);
-  padding: 8px
+  padding: 8px;
 }
 
 .navbar__menu {
@@ -147,7 +147,7 @@ p {
 
 /* Home */
 #home {
-  background: url("imgs/home__background.png"); 
+  background: url('imgs/home__background.png');
   padding: 40px;
   padding-top: 120px;
   text-align: center;
@@ -387,7 +387,7 @@ p {
 }
 
 .project__description h3:after {
-  content: "";
+  content: '';
   display: block;
   position: relative;
   left: 50%;
@@ -462,6 +462,27 @@ p {
   transition: all var(--animation-duration) ease-in;
 }
 
+/* scroll */
+.arrowUpBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width:70px;
+  height: 70px;
+  font-size: 50px;
+  background-color: #73aace;
+  color: white;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms ease-in;
+}
+
+.arrowUpBtn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
     display: block;
@@ -479,7 +500,7 @@ p {
     display: none;
   }
 
-  .about__majors{
+  .about__majors {
     flex-direction: column;
   }
 
@@ -494,9 +515,8 @@ p {
   .project {
     flex-grow: 1;
   }
-  .testimonial__avatar{
+  .testimonial__avatar {
     width: 80px;
     height: 80px;
   }
-
 }
