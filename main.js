@@ -26,7 +26,7 @@ navbarMenu.addEventListener('click', (event) => {
 //Navbar toggle button for small screen
 const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
 navbarToggleBtn.addEventListener('click', () => {
-navbarMenu.classList.toggle('open');
+  navbarMenu.classList.toggle('open');
 });
 
 // handle click on "contact me" button on home
@@ -92,3 +92,41 @@ function scrollIntoView(selector) {
   const scrollTo = document.querySelector(selector);
   scrollTo.scrollIntoView({ behavior: 'smooth' });
 }
+
+const sectionIds = [
+  '#home',
+  '#about',
+  '#skills',
+  '#work',
+  '#testimonials',
+  '#contact',
+];
+const sections = sectionIds.map((id) => document.querySelector(id));
+const navItems = sectionIds.map((id) => document.querySelector(`[data-link="${id}"]`));
+
+let selectedNavItem = navItems[0];
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.3,
+};
+
+const observerCallback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if(!entry.isIntersecting && entry.intersectionRatio > 0) {
+      const index = sectionIds.indexOf(`#${entry.target.id}`);
+      let selectedIndex;
+      if (entry.boundingClientRect.y < 0) {
+        selectedIndex = index + 1;
+      } else {
+        selectedIndex = index - 1;
+      }
+      selectedNavItem.classList.remove('active');
+      selectedNavItem = navItems[selectedIndex];
+      selectedNavItem.classList.add('active');
+    }
+  });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
